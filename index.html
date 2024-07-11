@@ -6,9 +6,19 @@
     <title>Display index.astro Content</title>
   </head>
   <body>
-    <iframe
-      src="./src/pages/index.astro"
-      style="width: 100%; height: 100vh; border: none"
-    ></iframe>
+    <div id="astroContent"></div>
+
+    <script>
+      // 使用 Fetch API 加载 index.astro 的内容
+      fetch("./src/pages/index.astro")
+        .then((response) => response.text())
+        .then((data) => {
+          // 将加载的内容插入到页面中
+          document.getElementById("astroContent").innerHTML = data;
+        })
+        .catch((error) => {
+          console.error("Error fetching astro content:", error);
+        });
+    </script>
   </body>
 </html>
